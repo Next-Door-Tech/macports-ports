@@ -14,7 +14,7 @@ set ver_hash        0d15f75042
 set ver_gal_item    58914
 version             ${ver_num}
 epoch               1
-revision            3
+revision            4
 
 categories          graphics gnome
 license             GPL-3+
@@ -106,6 +106,7 @@ depends_lib-append \
                     port:lcms2 \
                     port:libcdr-0.1 \
                     port:libepoxy \
+                    port:libiconv \
                     path:include/turbojpeg.h:libjpeg-turbo \
                     port:libpng \
                     port:libsigcxx2 \
@@ -152,7 +153,10 @@ configure.args-append \
                     -DWITH_NLS=ON \
                     -DWITH_OPENMP=OFF \
                     -DWITH_PROFILING=OFF \
-                    -DWITH_X11=OFF
+                    -DWITH_X11=OFF \
+                    -DIconv_INCLUDE_DIR=${prefix}/include \
+                    -DIconv_LIBRARY=${prefix}/lib/libiconv.dylib \
+                    -DIconv_IS_BUILT_IN=OFF
 
 # The following dummy variants are used to identify this port's binary dependencies,
 # based on which variant of gtkmm is used for the build.
